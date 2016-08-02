@@ -20,7 +20,7 @@ Now it supports menus built with [ACL Menu Component](http://mark-story.com/post
 
 ## Requirements
 
-* CakePHP 2.x
+* CakePHP 3.x
 * PHP 5.3
 
 ## Installation
@@ -43,7 +43,7 @@ _[Manual]_
 
 * Download this: [http://github.com/torifat/cake-menu_builder/zipball/master](http://github.com/torifat/cake-menu_builder/zipball/master)
 * Unzip that download.
-* Copy the resulting folder to `app/Plugin`
+* Copy the resulting folder to `plugins`
 * Rename the folder you just copied to `MenuBuilder`
 
 _[GIT Submodule]_
@@ -51,33 +51,33 @@ _[GIT Submodule]_
 In your app directory type:
 
 ```bash
-  git submodule add -b master git://github.com/torifat/cake-menu_builder.git Plugin/MenuBuilder
+  git submodule add -b master git://github.com/torifat/cake-menu_builder.git plugins/MenuBuilder
   git submodule init
   git submodule update
 ```
 
 _[GIT Clone]_
 
-In your `Plugin` directory type:
+In your `plugins` directory type:
 
     git clone -b master git://github.com/torifat/cake-menu_builder.git MenuBuilder
 
 ### Enable plugin
 
-In 2.0 you need to enable the plugin in your `app/Config/bootstrap.php` file:
+In 3.0 you need to enable the plugin in your `config/bootstrap.php` file:
 
-    CakePlugin::load('MenuBuilder');
+    Plugin::load('MenuBuilder');
 
-If you are already using `CakePlugin::loadAll();`, then this is not necessary.
+If you are already using `Plugin::loadAll();`, then this is not necessary.
 
 # Usage
 
 ## Minimal Setup
-Load the Plugin by modifying your app/Config/bootstrap.php
+Load the Plugin by modifying your config/bootstrap.php
 
     <?php
     ...
-    CakePlugin::load('MenuBuilder');
+    Plugin::load('MenuBuilder');
     ?>
 
 or
@@ -87,11 +87,15 @@ or
     CakePlugin::loadAll();
     ?>
 
+To use this helper add the following to your AppView:
+```
+    $this->loadHelper('MenuBuilder.MenuBuilder');
+```
+
 To use this helper add the following to your AppController:
 
     <?php
     ...
-    var $helpers = array(..., 'MenuBuilder.MenuBuilder');
 
     function beforeFilter() {
         ...
@@ -187,10 +191,7 @@ You can provide advance options in the array like the following:
 
     <?php
     ...
-    var $helpers = array(
-        ...
-        'MenuBuilder.MenuBuilder' => array(/* array of settings */)
-    );
+    $this->loadHelper('MenuBuilder.MenuBuilder', [/* array of settings */]);
     ?>
 
 ### Default Settings

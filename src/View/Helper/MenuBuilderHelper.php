@@ -1,5 +1,9 @@
 <?php
-App::uses('AppHelper', 'View/Helper');
+namespace MenuBuilder\View\Helper;
+
+use Cake\View\Helper;
+use Cake\Routing\Router;
+use Cake\Core\Configure;
 
 /**
  * MenuBuilder Helper
@@ -8,14 +12,14 @@ App::uses('AppHelper', 'View/Helper');
  *
  * @author M. M. Rifat-Un-Nabi <to.rifat@gmail.com>
  */
-class MenuBuilderHelper extends AppHelper {
+class MenuBuilderHelper extends Helper {
 
 /**
  * Helper dependencies
  *
  * @var array
  */
-	public $helpers = array('Html');
+	public $helpers = ['Html'];
 
 /**
  * Array of global menu
@@ -84,7 +88,7 @@ class MenuBuilderHelper extends AppHelper {
  * @param View $View The View this helper is being attached to.
  * @param array $settings Configuration settings for the helper.
  */
-	public function __construct(View $View, $settings = array()) {
+	public function __construct($View, $settings = array()) {
 		if (isset($settings['defaults'])) {
 			$this->defaults = $settings['defaults'] + $this->defaults;
 			unset($settings['defaults']);
